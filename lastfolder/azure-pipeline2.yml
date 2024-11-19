@@ -1,0 +1,25 @@
+stages:
+- stage: "Build"
+  displayName: 'Build'
+  jobs:
+  - job: 'Build'
+    displayName: 'Build .NET'
+    steps:
+    - script: |
+        sleep 1 
+- stage: "Test"
+  displayName: 'Test'
+  jobs:
+  - job: 'Test'
+    displayName: 'Test .NET'
+    steps:
+    - script: |
+        sleep 1 
+- stage: "Deploy"
+  displayName: 'Deploy'
+  jobs:
+  - job: 'TDeploy'
+    displayName: 'Deploy .NET'
+    steps:
+    - script: |
+        sleep 1
