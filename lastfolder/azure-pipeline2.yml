@@ -4,22 +4,31 @@ stages:
   jobs:
   - job: 'Build'
     displayName: 'Build .NET'
+    pool:
+      name: Default   # Specify the agent pool (default in your case)
     steps:
     - script: |
         sleep 1 
+
 - stage: "Test"
   displayName: 'Test'
   jobs:
   - job: 'Test'
     displayName: 'Test .NET'
+    pool:
+      name: Default   # Specify the agent pool (default in your case)
     steps:
     - script: |
         sleep 1 
+
 - stage: "Deploy"
   displayName: 'Deploy'
   jobs:
-  - job: 'TDeploy'
+  - job: 'Deploy'
     displayName: 'Deploy .NET'
+    pool:
+      name: Default   # Specify the agent pool (default in your case)
     steps:
     - script: |
         sleep 1
+
