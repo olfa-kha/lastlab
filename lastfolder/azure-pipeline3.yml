@@ -25,15 +25,15 @@ stages:
     - task: VSBuild@1
       inputs:
         solution: '**/*.sln'  # Adjust to your solution file path
-        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
         platform: 'Any CPU'
         configuration: 'Release'
       displayName: 'Build Solution'
 
     # Step 3: Publish build artifact
-    - task: PublishBuildArtifacts@1
+    - task: PublishPipelineArtifact@1
       inputs:
-        pathToPublish: '$(Build.ArtifactStagingDirectory)'  # Folder containing the build output
-        artifactName: 'drop'  # Name of the published artifact
-        publishLocation: 'Container'
+        pathToPublish: '$(Pipeline.Workspace)'  # Folder containing the build output
+        artifactName: 'myartifact'  # Name of the published artifact
+        publishLocation: 'pipeline'
       displayName: 'Publish Build Artifact'
