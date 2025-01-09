@@ -9,7 +9,7 @@ stages:
   displayName: 'Build and Publish Artifact'
   jobs:
   - job: 'BuildAndPublish'
-    displayName: 'Build .NET Web Application'
+    displayName: 'Build .NET framework'
     steps:
     # Step 1: Install NuGet packages
     - task: NuGetToolInstaller@1
@@ -25,10 +25,10 @@ stages:
     - task: VSBuild@1
       inputs:
         solution: '**/*.sln'  # Adjust to your solution file path
-        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+        msbuildArgs: '/p:TargetFrameworkVersion=v4.5 /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
         platform: 'Any CPU'
         configuration: 'Release'
-      displayName: 'Build Solution'
+      displayName: 'Build Solution with .NET Framework 4.5'
 
     # Step 3: Publish build artifact
     - task: PublishPipelineArtifact@1
